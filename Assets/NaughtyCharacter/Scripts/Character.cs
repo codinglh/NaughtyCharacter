@@ -49,6 +49,15 @@ namespace NaughtyCharacter
 		}
 	}
 
+    public enum MovementState
+    {
+        Idle,
+        Move,
+        Jump,
+        Roll,
+    }
+
+
 	public class Character : MonoBehaviour
 	{
 		public Controller Controller; // The controller that controls the character
@@ -73,6 +82,7 @@ namespace NaughtyCharacter
 		public Vector3 HorizontalVelocity => _characterController.velocity.SetY(0.0f);
 		public Vector3 VerticalVelocity => _characterController.velocity.Multiply(0.0f, 1.0f, 0.0f);
 		public bool IsGrounded { get; private set; }
+        public MovementState MovementState { get; private set; } = MovementState.Idle;
 
 		private void Awake()
 		{
@@ -104,10 +114,25 @@ namespace NaughtyCharacter
 
 			OrientToTargetRotation(movement.SetY(0.0f));
 
-			IsGrounded = _characterController.isGrounded;
-
-			_characterAnimator.UpdateState();
+            IsGrounded = _characterController.isGrounded;
+            UpdateGroundState();
+            _characterAnimator.UpdateState();
 		}
+
+        private void UpdateGroundState()
+        {
+            if (IsGrounded)
+            {
+                if (HorizontalVelocity.sqrMagnitude + VerticalVelocity.sqrMagnitude < 1e-3)
+                {
+                    MovementState = MovementState.Idle;
+                }
+                else
+                {
+                    MovementState = MovementState.Move;
+                }
+            }
+        }
 
 		public void SetMovementInput(Vector3 movementInput)
 		{
@@ -162,14 +187,14 @@ namespace NaughtyCharacter
 
 		private void UpdateVerticalSpeed()
 		{
-			if (IsGrounded)
+			if (MovementState == MovementState.Idle)
 			{
 				_verticalSpeed = -GravitySettings.GroundedGravity;
 
 				if (_jumpInput)
 				{
 					_verticalSpeed = MovementSettings.JumpSpeed;
-					IsGrounded = false;
+                    MovementState = MovementState.Jump;
 				}
 			}
 			else

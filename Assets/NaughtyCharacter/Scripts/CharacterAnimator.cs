@@ -7,6 +7,9 @@ namespace NaughtyCharacter
 		public static readonly int HorizontalSpeed = Animator.StringToHash("HorizontalSpeed");
 		public static readonly int VerticalSpeed = Animator.StringToHash("VerticalSpeed");
 		public static readonly int IsGrounded = Animator.StringToHash("IsGrounded");
+
+        public static readonly int MovementState = Animator.StringToHash("MovementState");
+        public static readonly int IdlePose = Animator.StringToHash("IdlePose");
 	}
 
 	public class CharacterAnimator : MonoBehaviour
@@ -28,8 +31,10 @@ namespace NaughtyCharacter
 			float jumpSpeed = _character.MovementSettings.JumpSpeed;
 			float normVerticalSpeed = _character.VerticalVelocity.y.Remap(-jumpSpeed, jumpSpeed, -1.0f, 1.0f);
 			_animator.SetFloat(CharacterAnimatorParamId.VerticalSpeed, normVerticalSpeed);
+            
 
 			_animator.SetBool(CharacterAnimatorParamId.IsGrounded, _character.IsGrounded);
+            _animator.SetInteger(CharacterAnimatorParamId.MovementState, (int)_character.MovementState);
 		}
 	}
 }
