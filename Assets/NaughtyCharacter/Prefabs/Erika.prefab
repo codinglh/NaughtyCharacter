@@ -1131,8 +1131,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1877895601260625032}
   - component: {fileID: 8396297228955472370}
+  - component: {fileID: 2959776825625291311}
+  - component: {fileID: 8670137350384653483}
+  - component: {fileID: 7732525568432453917}
   m_Layer: 0
-  m_Name: erika_archer_bow_arrow
+  m_Name: Erika
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1167,12 +1170,72 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 63978fe6856b35c47b7f92dc0cb50865, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!143 &2959776825625291311
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3194452644680601243}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.62
+  m_Radius: 0.35
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.89, z: 0}
+--- !u!114 &8670137350384653483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3194452644680601243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19895b2297432194286737f0a8f1042d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controller: {fileID: 11400000, guid: 827c282016b19644d99b2337152dc01b, type: 2}
+  MovementSettings:
+    Acceleration: 25
+    Decceleration: 25
+    MaxHorizontalSpeed: 8
+    JumpSpeed: 10
+    JumpAbortSpeed: 10
+  GravitySettings:
+    Gravity: 20
+    GroundedGravity: 5
+    MaxFallSpeed: 40
+  RotationSettings:
+    MinPitchAngle: -45
+    MaxPitchAngle: 75
+    _useControlRotation: 1
+    _orientRotationToMovement: 0
+    MinRotationSpeed: 600
+    MaxRotationSpeed: 1200
+--- !u!114 &7732525568432453917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3194452644680601243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42948da0c996a1f429b0906415869b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3194681108555722163
 GameObject:
   m_ObjectHideFlags: 0

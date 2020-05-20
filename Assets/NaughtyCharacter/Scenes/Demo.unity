@@ -3024,9 +3024,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Erika
       objectReference: {fileID: 0}
-    - target: {fileID: 8396297228955472370, guid: 90740e3077e675149864d97de5818bd6,
+    - target: {fileID: 8670137350384653483, guid: 90740e3077e675149864d97de5818bd6,
         type: 3}
-      propertyPath: m_ApplyRootMotion
+      propertyPath: RotationSettings._useControlRotation
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8670137350384653483, guid: 90740e3077e675149864d97de5818bd6,
+        type: 3}
+      propertyPath: RotationSettings._orientRotationToMovement
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
