@@ -30,9 +30,9 @@ namespace NaughtyCharacter
 			float normHorizontalSpeed = _character.HorizontalVelocity.magnitude / _character.MovementSettings.MaxHorizontalSpeed;
 			_animator.SetFloat(CharacterAnimatorParamId.HorizontalSpeed, normHorizontalSpeed);
 
-            Vector3 normalizedVelocity = _character.HorizontalVelocity.normalized;
-            float moveForward = Vector3.Dot(_character.transform.forward, normalizedVelocity) * normHorizontalSpeed;
-            float moveRight = Vector3.Dot(_character.transform.right, normalizedVelocity) * normHorizontalSpeed;
+            Vector3 velocity = _character.HorizontalVelocity;
+            float moveForward = Vector3.Dot(_character.transform.forward, velocity);
+            float moveRight = Vector3.Dot(_character.transform.right, velocity);
 
             _animator.SetFloat(CharacterAnimatorParamId.MoveForward, moveForward);
             _animator.SetFloat(CharacterAnimatorParamId.MoveRight, moveRight);

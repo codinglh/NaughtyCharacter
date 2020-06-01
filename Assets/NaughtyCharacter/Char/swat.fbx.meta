@@ -1,22 +1,9 @@
 fileFormatVersion: 2
-guid: 6fbe1358590e1a242ae0914014e72f07
+guid: e2d190aecec337240a78eaeadc935ffc
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable:
-  - first:
-      74: -203655887218126122
-    second: mixamo.com
-  externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Soldier_body1
-    second: {fileID: 2100000, guid: f56dbb1612dac1d42b9fed5ec9142349, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Soldier_head6
-    second: {fileID: 2100000, guid: ed3490917ecbd0d4282699c7b0a3265d, type: 2}
+  internalIDToNameTable: []
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
