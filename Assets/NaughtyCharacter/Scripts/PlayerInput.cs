@@ -37,9 +37,20 @@ namespace NaughtyCharacter
 			MoveInput = moveInput;
 			HasMoveInput = hasMoveInput;
 
-			// Update other inputs
-			CameraInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-			JumpInput = Input.GetButton("Jump");
+            // Update other inputs
+            
+            if (Input.GetMouseButton(1))
+            {
+                float mouseX = Input.GetAxis("Mouse X");
+                float mouseY = Input.GetAxis("Mouse Y");
+                CameraInput = new Vector2(mouseX, mouseY);
+            }
+            else
+            {
+                CameraInput = new Vector2(0, 0);
+            }
+            Debug.Log(CameraInput);
+            JumpInput = Input.GetButton("Jump");
 		}
 	}
 }
