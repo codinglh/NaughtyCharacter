@@ -9,7 +9,7 @@ namespace NaughtyCharacter
 		public Vector2 MoveInput { get; private set; }
 		public Vector2 LastMoveInput { get; private set; }
 		public Vector2 CameraInput { get; private set; }
-		public bool JumpInput { get; private set; }
+        public bool JumpInput { get; private set; }
         public bool SprintInput { get; private set; }
         public bool WalkInput { get; private set; }
 
@@ -38,7 +38,7 @@ namespace NaughtyCharacter
 
 			MoveInput = moveInput;
 			HasMoveInput = hasMoveInput;
-            JumpInput = Input.GetButton("Jump");
+            JumpInput = Input.GetKeyUp(KeyCode.Space);
             SprintInput = Input.GetKey(KeyCode.LeftShift);
             WalkInput = Input.GetKey(KeyCode.LeftControl);
 

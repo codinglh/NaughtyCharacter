@@ -86,7 +86,20 @@ namespace NaughtyCharacter
 		public Vector3 HorizontalVelocity => _characterController.velocity.SetY(0.0f);
 		public Vector3 VerticalVelocity => _characterController.velocity.Multiply(0.0f, 1.0f, 0.0f);
 		public bool IsGrounded { get; private set; }
-        public MovementState MovementState { get; private set; } = MovementState.Idle;
+
+		private MovementState _movementState = MovementState.Idle;
+		public MovementState MovementState
+		{
+			get { return _movementState; }
+			private set
+			{
+				if (_movementState != value)
+				{
+					_movementState = value;
+					Debug.LogWarning("Change state: " + value);
+				}
+			}
+		}
 
 		private void Awake()
 		{
@@ -166,7 +179,7 @@ namespace NaughtyCharacter
 
 		public void SetJumpInput(bool jumpInput)
 		{
-			_jumpInput = jumpInput;
+			_jumpInput = _jumpInput || jumpInput;
 		}
 
 		public Vector2 GetControlRotation()
@@ -206,12 +219,13 @@ namespace NaughtyCharacter
 
 		private void UpdateVerticalSpeed()
 		{
-			if (MovementState == MovementState.Idle)
+			if (MovementState == MovementState.Idle || MovementState == MovementState.Move)
 			{
 				_verticalSpeed = -GravitySettings.GroundedGravity;
 
 				if (_jumpInput)
 				{
+					_jumpInput = false;
 					_verticalSpeed = MovementSettings.JumpSpeed;
                     MovementState = MovementState.Jump;
 				}
