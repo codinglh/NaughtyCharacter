@@ -7,9 +7,11 @@ namespace NaughtyCharacter
 	{
 		public float Acceleration = 25.0f; // In meters/second
 		public float Decceleration = 25.0f; // In meters/second
-		public float MaxHorizontalSpeed = 8.0f; // In meters/second
-		public float JumpSpeed = 10.0f; // In meters/second
-		public float JumpAbortSpeed = 10.0f; // In meters/second
+        public float MaxWalkSpeed = 2.0f;
+		public float MaxRunSpeed = 4.0f; // In meters/second
+        public float MaxSprintSpeed = 8.0f;
+        public float JumpSpeed = 10.0f; // In meters/second
+        public float JumpAbortSpeed = 10.0f; // In meters/second
 	}
 
 	[System.Serializable]
@@ -77,8 +79,10 @@ namespace NaughtyCharacter
 		private Vector3 _lastMovementInput;
 		private bool _hasMovementInput;
 		private bool _jumpInput;
+        private bool _sprintInput;
+        private bool _walkInput;
 
-		public Vector3 Velocity => _characterController.velocity;
+        public Vector3 Velocity => _characterController.velocity;
 		public Vector3 HorizontalVelocity => _characterController.velocity.SetY(0.0f);
 		public Vector3 VerticalVelocity => _characterController.velocity.Multiply(0.0f, 1.0f, 0.0f);
 		public bool IsGrounded { get; private set; }
@@ -150,6 +154,16 @@ namespace NaughtyCharacter
 			_hasMovementInput = hasMovementInput;
 		}
 
+        public void SetWalkInput(bool walkInput)
+        {
+            _walkInput = walkInput;
+        }
+
+        public void SetSprintInput(bool sprintInput)
+        {
+            _sprintInput = sprintInput;
+        }
+
 		public void SetJumpInput(bool jumpInput)
 		{
 			_jumpInput = jumpInput;
@@ -182,7 +196,9 @@ namespace NaughtyCharacter
 				movementInput.Normalize();
 			}
 
-			_targetHorizontalSpeed = movementInput.magnitude * MovementSettings.MaxHorizontalSpeed;
+            float maxSpeed = _sprintInput ? MovementSettings.MaxSprintSpeed : _walkInput ? MovementSettings.MaxWalkSpeed : MovementSettings.MaxRunSpeed;
+
+			_targetHorizontalSpeed = movementInput.magnitude * maxSpeed;
 			float acceleration = _hasMovementInput ? MovementSettings.Acceleration : MovementSettings.Decceleration;
 
 			_horizontalSpeed = Mathf.MoveTowards(_horizontalSpeed, _targetHorizontalSpeed, acceleration * Time.deltaTime);

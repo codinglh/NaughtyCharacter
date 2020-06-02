@@ -10,6 +10,8 @@ namespace NaughtyCharacter
 		public Vector2 LastMoveInput { get; private set; }
 		public Vector2 CameraInput { get; private set; }
 		public bool JumpInput { get; private set; }
+        public bool SprintInput { get; private set; }
+        public bool WalkInput { get; private set; }
 
 		public bool HasMoveInput { get; private set; }
 
@@ -36,9 +38,16 @@ namespace NaughtyCharacter
 
 			MoveInput = moveInput;
 			HasMoveInput = hasMoveInput;
+            JumpInput = Input.GetButton("Jump");
+            SprintInput = Input.GetKey(KeyCode.LeftShift);
+            WalkInput = Input.GetKey(KeyCode.LeftControl);
 
-            // Update other inputs
-            
+            UpdateCameraInput();
+            UpdateTimeScale();
+		}
+
+        void UpdateCameraInput()
+        {
             if (Input.GetMouseButton(1))
             {
                 float mouseX = Input.GetAxis("Mouse X");
@@ -49,8 +58,19 @@ namespace NaughtyCharacter
             {
                 CameraInput = new Vector2(0, 0);
             }
-            //Debug.Log(CameraInput);
-            JumpInput = Input.GetButton("Jump");
-		}
-	}
+        }
+
+        void UpdateTimeScale()
+        {
+            if (Input.GetKeyDown(KeyCode.Equals))
+            {
+                Time.timeScale += 0.1f;
+            }
+            else if (Input.GetKeyDown(KeyCode.Minus))
+            {
+                Time.timeScale -= 0.1f;
+            }
+        }
+
+    }
 }
