@@ -49,7 +49,7 @@ namespace NaughtyCharacter
             {
                 CameraInput = new Vector2(0, 0);
             }
-            Debug.Log(CameraInput);
+            //Debug.Log(CameraInput);
             JumpInput = Input.GetButton("Jump");
 		}
 	}

@@ -116,8 +116,11 @@ namespace NaughtyCharacter
 
             IsGrounded = _characterController.isGrounded;
             UpdateGroundState();
-            _characterAnimator.UpdateState();
-		}
+            if (_characterAnimator != null)
+            {
+                _characterAnimator.UpdateState();
+            }
+        }
 
         private void UpdateGroundState()
         {
