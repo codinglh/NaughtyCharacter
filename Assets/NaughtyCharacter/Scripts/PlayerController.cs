@@ -25,6 +25,7 @@ namespace NaughtyCharacter
 			Character.SetJumpInput(_playerInput.JumpInput);
             Character.SetSprintInput(_playerInput.SprintInput);
             Character.SetWalkInput(_playerInput.WalkInput);
+			Character.SetCrouchInput(_playerInput.CrouchInput);
 		}
 
 		public override void OnCharacterFixedUpdate()

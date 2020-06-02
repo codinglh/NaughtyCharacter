@@ -12,6 +12,7 @@ namespace NaughtyCharacter
         public bool JumpInput { get; private set; }
         public bool SprintInput { get; private set; }
         public bool WalkInput { get; private set; }
+        public bool CrouchInput { get; private set; }
 
 		public bool HasMoveInput { get; private set; }
 
@@ -41,6 +42,7 @@ namespace NaughtyCharacter
             JumpInput = Input.GetKeyUp(KeyCode.Space);
             SprintInput = Input.GetKey(KeyCode.LeftShift);
             WalkInput = Input.GetKey(KeyCode.LeftControl);
+            CrouchInput = Input.GetKeyUp(KeyCode.C);
 
             UpdateCameraInput();
             UpdateTimeScale();

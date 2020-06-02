@@ -56,7 +56,7 @@ namespace NaughtyCharacter
         Idle,
         Move,
         Jump,
-        Roll,
+        Crouch,
     }
 
 
@@ -81,8 +81,9 @@ namespace NaughtyCharacter
 		private bool _jumpInput;
         private bool _sprintInput;
         private bool _walkInput;
+		private bool _crouchInput;
 
-        public Vector3 Velocity => _characterController.velocity;
+		public Vector3 Velocity => _characterController.velocity;
 		public Vector3 HorizontalVelocity => _characterController.velocity.SetY(0.0f);
 		public Vector3 VerticalVelocity => _characterController.velocity.Multiply(0.0f, 1.0f, 0.0f);
 		public bool IsGrounded { get; private set; }
@@ -172,7 +173,12 @@ namespace NaughtyCharacter
             _walkInput = walkInput;
         }
 
-        public void SetSprintInput(bool sprintInput)
+		public void SetCrouchInput(bool crouchInput)
+		{
+			_crouchInput = crouchInput;
+		}
+
+		public void SetSprintInput(bool sprintInput)
         {
             _sprintInput = sprintInput;
         }
