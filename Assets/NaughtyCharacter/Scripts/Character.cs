@@ -7,9 +7,10 @@ namespace NaughtyCharacter
 	{
 		public float Acceleration = 25.0f; // In meters/second
 		public float Decceleration = 25.0f; // In meters/second
-        public float MaxWalkSpeed = 2.0f;
-		public float MaxRunSpeed = 4.0f; // In meters/second
-        public float MaxSprintSpeed = 8.0f;
+        public float MaxWalkSpeed = 1.67f;
+		public float MaxRunSpeed = 4.15f; // In meters/second
+        public float MaxSprintSpeed = 5.89f;
+        public float MaxCrouchSpeed = 1.55f;
         public float JumpSpeed = 10.0f; // In meters/second
         public float JumpAbortSpeed = 10.0f; // In meters/second
 	}
@@ -30,8 +31,8 @@ namespace NaughtyCharacter
 		public float MaxPitchAngle = 75.0f;
 
 		[Header("Character Orientation")]
-		[SerializeField] private bool _useControlRotation = false;
-		[SerializeField] private bool _orientRotationToMovement = true;
+		[SerializeField] private bool _useControlRotation = true;
+		[SerializeField] private bool _orientRotationToMovement = false;
 		public float MinRotationSpeed = 600.0f; // The turn speed when the player is at max speed (in degrees/second)
 		public float MaxRotationSpeed = 1200.0f; // The turn speed when the player is stationary (in degrees/second)
 
@@ -53,10 +54,9 @@ namespace NaughtyCharacter
 
     public enum MovementState
     {
-        Idle,
-        Move,
-        Jump,
+        Stand,
         Crouch,
+        Jump,
     }
 
 
@@ -88,7 +88,7 @@ namespace NaughtyCharacter
 		public Vector3 VerticalVelocity => _characterController.velocity.Multiply(0.0f, 1.0f, 0.0f);
 		public bool IsGrounded { get; private set; }
 
-		private MovementState _movementState = MovementState.Idle;
+		private MovementState _movementState = MovementState.Stand;
 		public MovementState MovementState
 		{
 			get { return _movementState; }
@@ -144,13 +144,9 @@ namespace NaughtyCharacter
         {
             if (IsGrounded)
             {
-                if (HorizontalVelocity.sqrMagnitude + VerticalVelocity.sqrMagnitude < 1e-3)
+                if (MovementState == MovementState.Jump)
                 {
-                    MovementState = MovementState.Idle;
-                }
-                else
-                {
-                    MovementState = MovementState.Move;
+                    MovementState = MovementState.Stand;
                 }
             }
         }
@@ -175,7 +171,7 @@ namespace NaughtyCharacter
 
 		public void SetCrouchInput(bool crouchInput)
 		{
-			_crouchInput = crouchInput;
+			_crouchInput = _crouchInput || crouchInput;
 		}
 
 		public void SetSprintInput(bool sprintInput)
@@ -215,7 +211,10 @@ namespace NaughtyCharacter
 				movementInput.Normalize();
 			}
 
-            float maxSpeed = _sprintInput ? MovementSettings.MaxSprintSpeed : _walkInput ? MovementSettings.MaxWalkSpeed : MovementSettings.MaxRunSpeed;
+            float maxSpeed = MovementState == MovementState.Crouch ? MovementSettings.MaxCrouchSpeed :
+                            _sprintInput ? MovementSettings.MaxSprintSpeed :
+                            _walkInput ? MovementSettings.MaxWalkSpeed :
+                            MovementSettings.MaxRunSpeed;
 
 			_targetHorizontalSpeed = movementInput.magnitude * maxSpeed;
 			float acceleration = _hasMovementInput ? MovementSettings.Acceleration : MovementSettings.Decceleration;
@@ -225,17 +224,31 @@ namespace NaughtyCharacter
 
 		private void UpdateVerticalSpeed()
 		{
-			if (MovementState == MovementState.Idle || MovementState == MovementState.Move)
+			if (MovementState == MovementState.Stand)
 			{
 				_verticalSpeed = -GravitySettings.GroundedGravity;
 
 				if (_jumpInput)
 				{
-					_jumpInput = false;
 					_verticalSpeed = MovementSettings.JumpSpeed;
                     MovementState = MovementState.Jump;
 				}
+                if (_crouchInput)
+                {
+                    MovementState = MovementState.Crouch;
+                }
 			}
+            else if (MovementState == MovementState.Crouch)
+            {
+                if (_jumpInput)
+                {
+                    MovementState = MovementState.Jump;
+                }
+                if (_crouchInput)
+                {
+                    MovementState = MovementState.Stand;
+                }
+            }
 			else
 			{
 				if (!_jumpInput && _verticalSpeed > 0.0f)
@@ -246,6 +259,8 @@ namespace NaughtyCharacter
 
 				_verticalSpeed = Mathf.MoveTowards(_verticalSpeed, -GravitySettings.MaxFallSpeed, GravitySettings.Gravity * Time.deltaTime);
 			}
+            _crouchInput = false;
+            _jumpInput = false;
 		}
 
 		private Vector3 GetMovementDirection()
