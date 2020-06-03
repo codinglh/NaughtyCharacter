@@ -89,7 +89,7 @@ namespace NaughtyCharacter
 		private bool _crouchInput;
 
 		public Vector3 Velocity => _characterController.velocity;
-		public Vector3 HorizontalVelocity => _characterController.velocity.SetY(0.0f);
+		public Vector3 HorizontalVelocity => _horizontalSpeed * GetMovementDirection();
 		public Vector3 VerticalVelocity => _characterController.velocity.Multiply(0.0f, 1.0f, 0.0f);
 		public bool IsGrounded { get; private set; }
 
@@ -128,13 +128,21 @@ namespace NaughtyCharacter
 			Controller.OnCharacterFixedUpdate();
 		}
 
+		private void LateUpdate()
+		{
+			Controller.OnCharacterLateUpdate();
+		}
+
 		private void UpdateState()
 		{
 			UpdateHorizontalSpeed();
 			UpdateVerticalSpeed();
 
 			Vector3 movement = _horizontalSpeed * GetMovementDirection() + _verticalSpeed * Vector3.up;
-			_characterController.Move(movement * Time.deltaTime);
+			if (!_characterAnimator.UseRootMotion)
+			{
+				_characterController.Move(movement * Time.deltaTime);
+			}
 
 			OrientToTargetRotation(movement.SetY(0.0f));
 

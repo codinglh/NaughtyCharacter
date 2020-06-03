@@ -23,6 +23,5 @@ public class UpperState : StateMachineBehaviour
         {
             character.UpperState = 0;
         }
-        //animator.SetInteger(CharacterAnimatorParamId.UpperState, 0);
     }
 }

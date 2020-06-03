@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4958599661516191851}
   - component: {fileID: 4958599661516191850}
   - component: {fileID: 620182931}
+  - component: {fileID: 720390515}
   m_Layer: 0
   m_Name: Swat
   m_TagString: Untagged
@@ -63,8 +64,8 @@ MonoBehaviour:
   RotationSettings:
     MinPitchAngle: -45
     MaxPitchAngle: 75
-    _useControlRotation: 1
-    _orientRotationToMovement: 0
+    _useControlRotation: 0
+    _orientRotationToMovement: 1
     MinRotationSpeed: 600
     MaxRotationSpeed: 1200
 --- !u!143 &4958599661516191850
@@ -97,6 +98,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42948da0c996a1f429b0906415869b25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &720390515
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4958599661516191861}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: e2d190aecec337240a78eaeadc935ffc, type: 3}
+  m_Controller: {fileID: 9100000, guid: 4410e9f4ed9283b479fc0e83d9b7d42c, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &86895767631290542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,6 +132,11 @@ PrefabInstance:
     - target: {fileID: -6057140222963153312, guid: e2d190aecec337240a78eaeadc935ffc,
         type: 3}
       propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6057140222963153312, guid: e2d190aecec337240a78eaeadc935ffc,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: e2d190aecec337240a78eaeadc935ffc,

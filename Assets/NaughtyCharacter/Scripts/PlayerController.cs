@@ -29,10 +29,14 @@ namespace NaughtyCharacter
             Character.SetReloadInput(_playerInput.ReloadInput);
 		}
 
-		public override void OnCharacterFixedUpdate()
+		public override void OnCharacterLateUpdate()
 		{
 			_playerCamera.SetPosition(Character.transform.position);
 			_playerCamera.SetControlRotation(Character.GetControlRotation());
+		}
+
+		public override void OnCharacterFixedUpdate()
+		{
 		}
 
 		private void UpdateControlRotation()

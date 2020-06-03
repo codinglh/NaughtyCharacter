@@ -9,5 +9,6 @@ namespace NaughtyCharacter
 		public abstract void Init();
 		public abstract void OnCharacterUpdate();
 		public abstract void OnCharacterFixedUpdate();
+		public abstract void OnCharacterLateUpdate();
 	}
 }
