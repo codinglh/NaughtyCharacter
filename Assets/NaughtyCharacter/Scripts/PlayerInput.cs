@@ -13,6 +13,7 @@ namespace NaughtyCharacter
         public bool SprintInput { get; private set; }
         public bool WalkInput { get; private set; }
         public bool CrouchInput { get; private set; }
+        public bool ReloadInput { get; private set; }
 
 		public bool HasMoveInput { get; private set; }
 
@@ -43,6 +44,7 @@ namespace NaughtyCharacter
             SprintInput = Input.GetKey(KeyCode.LeftShift);
             WalkInput = Input.GetKey(KeyCode.LeftControl);
             CrouchInput = Input.GetKeyUp(KeyCode.C);
+            ReloadInput = Input.GetKeyUp(KeyCode.R);
 
             UpdateCameraInput();
             UpdateTimeScale();

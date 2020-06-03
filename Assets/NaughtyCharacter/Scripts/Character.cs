@@ -59,6 +59,11 @@ namespace NaughtyCharacter
         Jump,
     }
 
+    public enum UpperState
+    {
+        Idle,
+        Reload,
+    }
 
 	public class Character : MonoBehaviour
 	{
@@ -89,6 +94,7 @@ namespace NaughtyCharacter
 		public bool IsGrounded { get; private set; }
 
 		private MovementState _movementState = MovementState.Stand;
+        public UpperState UpperState { get; set; } = UpperState.Idle;
 		public MovementState MovementState
 		{
 			get { return _movementState; }
@@ -169,7 +175,15 @@ namespace NaughtyCharacter
             _walkInput = walkInput;
         }
 
-		public void SetCrouchInput(bool crouchInput)
+        public void SetReloadInput(bool reloadInput)
+        {
+            if (reloadInput)
+            {
+                UpperState = UpperState.Reload;
+            }
+        }
+
+        public void SetCrouchInput(bool crouchInput)
 		{
 			_crouchInput = _crouchInput || crouchInput;
 		}

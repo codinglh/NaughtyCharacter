@@ -42,6 +42,8 @@ namespace NaughtyCharacter
 			float normVerticalSpeed = _character.VerticalVelocity.y.Remap(-jumpSpeed, jumpSpeed, -1.0f, 1.0f);
 			_animator.SetFloat(CharacterAnimatorParamId.VerticalSpeed, normVerticalSpeed);
             _animator.SetInteger(CharacterAnimatorParamId.MovementState, (int)_character.MovementState);
+
+            _animator.SetInteger(CharacterAnimatorParamId.UpperState, (int)_character.UpperState);
 		}
 	}
 }

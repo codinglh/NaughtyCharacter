@@ -5,15 +5,24 @@ using NaughtyCharacter;
 
 public class UpperState : StateMachineBehaviour
 {
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    Character character;
+    Character GetCharacter(Animator animator)
     {
-
+        if (character == null)
+        {
+            character = animator.GetComponentInParent<Character>();
+        }
+        return character;
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.SetInteger(CharacterAnimatorParamId.UpperState, 0);
+        GetCharacter(animator);
+        if (character)
+        {
+            character.UpperState = 0;
+        }
+        //animator.SetInteger(CharacterAnimatorParamId.UpperState, 0);
     }
 }
