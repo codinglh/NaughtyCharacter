@@ -11,6 +11,7 @@ namespace NaughtyCharacter
         public static readonly int MoveRight = Animator.StringToHash("MoveRight");
 
         public static readonly int MovementState = Animator.StringToHash("MovementState");
+        public static readonly int UpperState = Animator.StringToHash("UpperState");
         public static readonly int IdlePose = Animator.StringToHash("IdlePose");
 	}
 
