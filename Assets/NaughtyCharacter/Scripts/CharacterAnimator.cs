@@ -21,6 +21,7 @@ namespace NaughtyCharacter
 		private float _currentUpperbodyWeight;
 		private float _targetUpperbodyWeight;
 		private float _currentDampVelocity;
+        public Transform GunHandTransform;
 
 		public bool UseRootMotion { get { return _animator.applyRootMotion; } }
 
@@ -35,7 +36,16 @@ namespace NaughtyCharacter
 			_targetUpperbodyWeight = weight;
 		}
 
-		public void UpdateState()
+        private void OnAnimatorIK(int layerIndex)
+        {
+            if (layerIndex == 1 && GunHandTransform)
+            {
+                _animator.SetIKPosition(AvatarIKGoal.LeftHand, GunHandTransform.position);
+                _animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, 1.0f);
+            }
+        }
+
+        public void UpdateState()
 		{
 			_currentUpperbodyWeight = Mathf.SmoothDamp(_currentUpperbodyWeight, _targetUpperbodyWeight, ref _currentDampVelocity, 0.2f);
 			_animator.SetLayerWeight(1, _currentUpperbodyWeight);
