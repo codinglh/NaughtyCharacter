@@ -64,8 +64,8 @@ MonoBehaviour:
   RotationSettings:
     MinPitchAngle: -45
     MaxPitchAngle: 75
-    _useControlRotation: 0
-    _orientRotationToMovement: 1
+    _useControlRotation: 1
+    _orientRotationToMovement: 0
     MinRotationSpeed: 600
     MaxRotationSpeed: 1200
 --- !u!143 &4958599661516191850
@@ -107,11 +107,11 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4958599661516191861}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: e2d190aecec337240a78eaeadc935ffc, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 2f26efefe4d438e4cb91ac9fb6b4f1ca, type: 3}
   m_Controller: {fileID: 9100000, guid: 4410e9f4ed9283b479fc0e83d9b7d42c, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -199,7 +199,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: swat
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6057140222963153312, guid: e2d190aecec337240a78eaeadc935ffc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e2d190aecec337240a78eaeadc935ffc, type: 3}
 --- !u!4 &4921875785037138868 stripped
 Transform:
