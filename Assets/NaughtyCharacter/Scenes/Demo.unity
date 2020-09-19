@@ -3029,6 +3029,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ortiz
       objectReference: {fileID: 0}
+    - target: {fileID: 9206250873920416187, guid: 61d8c9de0b711f840a81ba702b837d5c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61d8c9de0b711f840a81ba702b837d5c, type: 3}
 --- !u!1001 &4761087742372319391
@@ -3107,6 +3112,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 720390515, guid: e53d1e3afaa42b24684ac2b7ec8916ab, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: e2d190aecec337240a78eaeadc935ffc, type: 3}
+    - target: {fileID: 720390515, guid: e53d1e3afaa42b24684ac2b7ec8916ab, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4958599661516191848, guid: e53d1e3afaa42b24684ac2b7ec8916ab,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3170,7 +3183,7 @@ PrefabInstance:
     - target: {fileID: 4958599661516191861, guid: e53d1e3afaa42b24684ac2b7ec8916ab,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e53d1e3afaa42b24684ac2b7ec8916ab, type: 3}
